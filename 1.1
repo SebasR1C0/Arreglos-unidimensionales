@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+void veri(int* datos, int n) {
+	for (int i = 0; i < n; i++) {
+		do {
+			cout << "La nota del alumno " << i + 1 << " es: ";
+			cin >> datos[i];
+		} while (datos[i]<1 || datos[i]>20);
+	}
+	cout << endl;
+}
+void menor(int* datos, int n) {
+	int men = datos[0];
+	cout << "Las notas son: " << men;
+	for (int i = 1; i < n; i++) {
+		cout << ", " << datos[i];
+		if (men > datos[i]) {
+			men = datos[i];
+		}
+	}
+	cout << endl;
+	cout << "La nota que no se considera en el promedio seria: " << men << endl;
+}
+int main(){
+	int n = 6, *datos;
+	datos = new int[n];
+	veri(datos, n);
+	menor(datos, n);
+	delete[]datos;
+	return 0;
+}
