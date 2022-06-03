@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+void veri(int* datos, int n) {
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) {
+		datos[i] = rand() % 21;
+		cout << "La nota del alumno " << i + 1 << " es: " << datos[i] << endl;
+	}
+	cout << endl;
+}
+void promedio(int* datos, int n) {
+	int suma = 0;
+	for (int i = 0; i < n; i++) {
+		suma += datos[i];
+	}
+	cout << "La nota promedio es: " << (double)suma / n << endl;
+	cout << endl;
+}
+void modaa(int* datos, int n) {
+	int modaaa = 0, alum, repe=0;
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < n; j++) {
+			if (i==datos[j]) repe++;
+		}
+		if (modaaa < repe) {
+			alum = i;
+			modaaa = repe;
+		}
+		repe = 0;
+	}
+	cout << "La moda es " << alum << " y tiene " << modaaa << " repeticiones" << endl;
+	cout << endl;
+}
+void mayor(int* datos, int n) {
+	int may = datos[0];
+	for (int i = 1; i < n; i++) {
+		if (may < datos[i]) {
+			may = datos[i];
+		}
+	}
+	cout << "La maxima nota es: " << may << endl;
+	cout << endl;
+}
+void menor(int* datos, int n) {
+	int men = datos[0];
+	for (int i = 1; i < n; i++) {
+		if (men > datos[i]) {
+			men = datos[i];
+		}
+	}
+	cout << "La minima nota es: " << men << endl;
+	cout << endl;
+}
+int main(){
+	int n , *datos;
+	do {
+		cout << "Ingrese el numero de alumnos: ";
+		cin >> n;
+	} while (n < 1);
+	datos = new int[n];
+	veri(datos, n);
+	promedio(datos, n);
+	modaa(datos, n);
+	mayor(datos, n);
+	menor(datos, n);
+	delete[]datos;
+	return 0;
+}
