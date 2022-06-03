@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+void veri(int* datos, int n) {
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) {
+		datos[i] = rand() % 100 + 1;
+		cout << "La edad de la persona " << i + 1 << " es: " << datos[i] << endl;
+	}
+	cout << endl;
+}
+void menor(int* datos, int n) {
+	int men = datos[0];
+	for (int i = 1; i < n; i++) {
+		if (men > datos[i]) {
+			men = datos[i];
+		}
+	}
+	cout << "La edad menor es: " << men << endl;
+	cout << endl;
+	cout << "Las siguientes personas tienen de edad el menor numero: " << endl;
+	for (int i = 1; i < n; i++) {
+		if (men == datos[i]) {
+			cout << "La persona " << i + 1 << " tiene como edad " << men << endl;;
+		}
+	}
+	cout << endl;
+}
+void numero(int* datos, int n) {
+	int num = 0;
+	for (int i = 0; i < n; i++) {
+		if (30 <= datos[i] && datos[i]<=50) num++;
+	}
+	cout << "El numero de personas que tienen entre 30 y 50 es: " << num << endl;
+	cout << endl;
+}
+void buscar(int* datos, int n) {
+	int ed,nume=0;
+	do {
+		cout << "Ingrese la edad que quiere buscar: ";
+		cin >> ed;
+	} while (ed < 1);
+	for (int i = 0; i < n; i++) {
+		if (ed == datos[i]) nume++;
+	}
+	if (nume == 0) {
+		cout << "No se encontro el numero " << endl;
+	}
+	else {
+		cout << "Se ha encontrado " << nume << " personas con la misma edad" << endl;
+	}
+}
+int main(){
+	int n , *datos;
+	do {
+		cout << "Ingrese el numero de personas: ";
+		cin >> n;
+	} while (n < 1);
+	datos = new int[n];
+	veri(datos, n);
+	menor(datos, n);
+	numero(datos, n);
+	buscar(datos, n);
+	delete[]datos;
+	return 0;
+}
