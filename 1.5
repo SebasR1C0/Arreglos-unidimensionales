@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+void veri(int* datos, int n) {
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) {
+		datos[i] = rand() % 21;
+		cout << "La nota del alumno " << i + 1 << " es: " << datos[i] << endl;
+	}
+	cout << endl;
+}
+void calcular(int* datos, int n) {
+	int men = 0, mayor = 0, des = 0, apro = 0;
+	for (int i = 0; i < n; i++) {
+		if (datos[i] == 0)men++;
+		if (datos[i] == 20)mayor++;
+		if (datos[i] >= 13)apro++;
+		if (datos[i] < 13)des++;
+	}
+	cout << "Los alumnos con nota 00 son: " << men << endl;
+	cout << "Los alumnos con nota 20 son: " << mayor << endl;
+	cout << "Los alumnos aprobados son: " << apro << endl;
+	cout << "Los alumnos desaprobados son: " << des << endl;
+	cout << endl;
+}
+int main(){
+	int n , *datos;
+	do {
+		cout << "Ingrese el numero de alumnos: ";
+		cin >> n;
+	} while (n < 1);
+	datos = new int[n];
+	veri(datos, n);
+	calcular(datos, n);
+	delete[]datos;
+	return 0;
+}
