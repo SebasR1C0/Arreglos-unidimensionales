@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+void veri(int* datos, int n) {
+	for (int i = 0; i < n; i++) {
+		do {
+			cout << "El peso del cliente " << i + 1 << " es: ";
+			cin >> datos[i];
+		} while (datos[i]<1);
+	}
+	cout << endl;
+}
+void promedio(int* datos, int n) {
+	int suma = 0;
+	for (int i = 0; i < n; i++) {
+		suma += datos[i];
+	}
+	cout << "El peso promedio es: " <<(double)suma/n << endl;
+	cout << endl;
+}
+void mayor(int* datos, int n) {
+	int may = datos[0];
+	for (int i = 1; i < n; i++) {
+		if (may < datos[i]) {
+			may = datos[i];
+		}
+	}
+	cout << "El peso mayor es: " << may << endl;
+	cout << endl;
+}
+void tamanio(int* datos, int n) {
+	int del = 0, med = 0, gru = 0;
+	for (int i = 0; i < n; i++) {
+		if (53 > datos[i]) del++;
+		if (53 <= datos[i] && datos[i]<=60) med++;
+		if (60 < datos[i]) gru++;
+	}
+	cout << "El numero de personas con cotextura delgada es: " << del << endl;
+	cout << "El numero de personas con cotextura mediana es: " << med << endl;
+	cout << "El numero de personas con cotextura gruesa es: " << gru << endl;
+	cout << endl;
+}
+int main(){
+	int n , *datos;
+	do {
+		cout << "El numero de clientes: ";
+		cin >> n;
+	} while (n < 1);
+	datos = new int[n];
+	veri(datos, n);
+	promedio(datos, n);
+	mayor(datos, n);
+	tamanio(datos, n);
+	delete[]datos;
+	return 0;
+}
