@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+void generar(int *datos, int n) {
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) {
+		datos[i] = (rand() % 476) + 25;
+	}
+}
+void creciente(int* datos, int n) {
+	for (int i = 25; i <= 500; i++) {
+		for (int j = 0; j < n; j++) {
+			if (i == datos[j]) {
+				cout << "La persona " << j + 1 << " ha gastado en bebidas " << datos[j] << endl;
+			}
+		}
+	}
+}
+void busqueda(int* datos, int n) {
+	int conteo = 0;
+	for (int i = 0; i < n; i++) {
+		if (100 <= datos[i] && 300 >= datos[i]) {
+			conteo++;
+		}
+	}
+	cout << "El numero de personas que gastaron entre 100 y 300 es: " << conteo << endl;
+}
+void impar(int* datos, int n) {
+	int conteo = 0;
+	for (int i = 0; i < n; i++) {
+		if (datos[i] % 2 == 1) {
+			conteo++;
+		}
+	}
+	cout << "La cantidad de montos que tienen asociadas una cantidad impar es: " << conteo << endl;
+}
+int main() {
+	int n;
+	do {
+		cout << "Ingrese el numero de personas: ";
+		cin >> n;
+	} while (n < 1 || n > 200);
+	int* datos = new int[n];
+	generar(datos, n);
+	cout << endl;
+	creciente(datos,n);
+	cout << endl;
+	busqueda(datos, n);
+	cout << endl;
+	impar(datos, n);
+	delete[]datos;
+	return 0;
+}
