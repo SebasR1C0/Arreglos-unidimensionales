@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+void generar(int* datos, int n) {
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) {
+		datos[i] = rand() % 21;
+		cout << "La nota del alumno " << i + 1 << " es: " << datos[i] << endl;
+	}
+}
+void sumar(int* datos, int n) {
+	int a;
+	do {
+		cout << "Ingrese el valor de la curva: ";
+		cin >> a;
+	} while (a < 0 || a > 5);
+	for (int i =0; i < n; i++) {
+		datos[i] += a;
+		if (datos[i] > 20) {
+			datos[i] = 20;
+		}
+		cout << "La nota del alumno " << i + 1 << " es: " << datos[i] << endl;
+	}
+}
+void apro(int* datos, int n) {
+	cout << "Los alumnos aprobados son: " << endl;
+	for (int i = 0; i < n; i++) {
+		if (datos[i]>= 13) {
+			cout << "La nota del alumno " << i + 1 << " es aprobada con: " << datos[i] << endl;
+		}
+	}
+}
+int main() {
+	int n;
+	do {
+		cout << "Ingrese el numero de alumnos: ";
+		cin >> n;
+	} while (n < 1);
+	int* datos = new int[n];
+	cout << endl;
+	generar(datos, n);
+	cout << endl;
+	sumar(datos,n);
+	cout << endl;
+	apro(datos, n);
+	cout << endl;
+	delete[]datos;
+	return 0;
+}
