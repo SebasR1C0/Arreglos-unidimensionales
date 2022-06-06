@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+void generar(int *datos, int n) {
+	cout << "Escriba el numero digito por digito donde el digito 1 es el que esta a la izquierda" << endl;
+	cout << endl;
+	for (int i = 0; i < n; i++) {
+		cout << "Ingrese el digito " << i+1 << " : ";
+		cin >> datos[i];
+	}
+	cout << endl;
+}
+void mostrar(int* datos, int n) {
+	cout << "El numero es: ";
+	for (int i = 0; i < n; i++) {
+		cout << datos[i];
+	}
+	cout << endl;
+}
+void generarseg(int* datosseg, int n) {
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) {
+		if (i == 0) {
+			datosseg[i] = rand() % 9 +1;
+		}
+		else {
+		datosseg[i] = rand() % 10;
+		}
+	}
+	cout << "El segundo numero es: ";
+	for (int i = 0; i < n; i++) {
+		cout << datosseg[i];
+	}
+	cout << endl;
+}
+void sumar(int* datos, int n, int* datosseg) {
+	int conteo = 1, abc = 0;
+	for (int i = n - 1; i >= 0; i--) {
+		abc += (datos[i] + datosseg[i]) * conteo;
+		conteo *= 10;
+	}
+	cout << "La suma de los numero es: " << abc;
+	cout << endl;
+}
+void multi(int* datos, int n) {
+	int conteo = 1, abc = 0, a;
+	do {
+		cout << "Escribe el digito que se quiere multiplicar: ";
+		cin >> a;
+	} while (a < 1 || a > 9);
+	for (int i = n - 1; i >= 0; i--) {
+		abc += datos[i] * a * conteo;
+		conteo *= 10;
+	}
+	cout << "La multiplicacion es: " << abc;
+	cout << endl;
+}
+int main() {
+	int n;
+	do {
+		cout << "Ingrese el numero de digitos: ";
+		cin >> n;
+	} while (n < 1);
+	int* datos = new int[n];
+	int* datosseg = new int[n];
+	cout << endl;
+	generar(datos, n);
+	mostrar(datos,n);
+	generarseg(datosseg, n);
+	sumar(datos, n,datosseg);
+	multi(datos, n);
+	delete[]datos;
+	return 0;
+}
